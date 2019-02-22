@@ -333,8 +333,8 @@ class Player extends Human implements CommandSender, ChunkLoader, ChunkListener,
 		return $this->server->getNameBans()->isBanned($this->username);
 	}
 
-	public function setBanned(bool $value){
-		if($value){
+	public function setBanned(bool $banned) : void{
+		if($banned){
 			$this->server->getNameBans()->addBan($this->getName(), null, null, null);
 			$this->kick("You have been banned");
 		}else{
@@ -346,7 +346,7 @@ class Player extends Human implements CommandSender, ChunkLoader, ChunkListener,
 		return $this->server->isWhitelisted($this->username);
 	}
 
-	public function setWhitelisted(bool $value){
+	public function setWhitelisted(bool $value) : void{
 		if($value){
 			$this->server->addWhitelist($this->username);
 		}else{
@@ -389,15 +389,23 @@ class Player extends Human implements CommandSender, ChunkLoader, ChunkListener,
 		return parent::getUniqueId();
 	}
 
-	public function getPlayer(){
+	public function getPlayer() : ?Player{
 		return $this;
 	}
 
-	public function getFirstPlayed(){
+	/**
+	 * TODO: not sure this should be nullable
+	 * @return int|null
+	 */
+	public function getFirstPlayed() : ?int{
 		return $this->firstPlayed;
 	}
 
-	public function getLastPlayed(){
+	/**
+	 * TODO: not sure this should be nullable
+	 * @return int|null
+	 */
+	public function getLastPlayed() : ?int{
 		return $this->lastPlayed;
 	}
 
@@ -455,7 +463,7 @@ class Player extends Human implements CommandSender, ChunkLoader, ChunkListener,
 	/**
 	 * @return Server
 	 */
-	public function getServer(){
+	public function getServer() : Server{
 		return $this->server;
 	}
 
@@ -477,7 +485,7 @@ class Player extends Human implements CommandSender, ChunkLoader, ChunkListener,
 		return $this->lineHeight ?? 7;
 	}
 
-	public function setScreenLineHeight(?int $height){
+	public function setScreenLineHeight(?int $height) : void{
 		if($height !== null and $height < 1){
 			throw new \InvalidArgumentException("Line height must be at least 1");
 		}
@@ -565,7 +573,7 @@ class Player extends Human implements CommandSender, ChunkLoader, ChunkListener,
 	/**
 	 * @param bool $value
 	 */
-	public function setOp(bool $value){
+	public function setOp(bool $value) : void{
 		if($value === $this->isOp()){
 			return;
 		}
@@ -616,11 +624,11 @@ class Player extends Human implements CommandSender, ChunkLoader, ChunkListener,
 	/**
 	 * @param PermissionAttachment $attachment
 	 */
-	public function removeAttachment(PermissionAttachment $attachment){
+	public function removeAttachment(PermissionAttachment $attachment) : void{
 		$this->perm->removeAttachment($attachment);
 	}
 
-	public function recalculatePermissions(){
+	public function recalculatePermissions() : void{
 		$permManager = PermissionManager::getInstance();
 		$permManager->unsubscribeFromPermission(Server::BROADCAST_CHANNEL_USERS, $this);
 		$permManager->unsubscribeFromPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE, $this);
@@ -2748,7 +2756,7 @@ class Player extends Human implements CommandSender, ChunkLoader, ChunkListener,
 	 *
 	 * @param TextContainer|string $message
 	 */
-	public function sendMessage($message){
+	public function sendMessage($message) : void{
 		if($message instanceof TextContainer){
 			if($message instanceof TranslationContainer){
 				$this->sendTranslation($message->getText(), $message->getParameters());
@@ -3375,7 +3383,7 @@ class Player extends Human implements CommandSender, ChunkLoader, ChunkListener,
 		}
 	}
 
-	public function setMetadata(string $metadataKey, MetadataValue $newMetadataValue){
+	public function setMetadata(string $metadataKey, MetadataValue $newMetadataValue) : void{
 		$this->server->getPlayerMetadata()->setMetadata($this, $metadataKey, $newMetadataValue);
 	}
 
@@ -3387,30 +3395,30 @@ class Player extends Human implements CommandSender, ChunkLoader, ChunkListener,
 		return $this->server->getPlayerMetadata()->hasMetadata($this, $metadataKey);
 	}
 
-	public function removeMetadata(string $metadataKey, Plugin $owningPlugin){
+	public function removeMetadata(string $metadataKey, Plugin $owningPlugin) : void{
 		$this->server->getPlayerMetadata()->removeMetadata($this, $metadataKey, $owningPlugin);
 	}
 
-	public function onChunkChanged(Chunk $chunk){
+	public function onChunkChanged(Chunk $chunk) : void{
 		if(isset($this->usedChunks[$hash = Level::chunkHash($chunk->getX(), $chunk->getZ())])){
 			$this->usedChunks[$hash] = false;
 			$this->nextChunkOrderRun = 0;
 		}
 	}
 
-	public function onChunkLoaded(Chunk $chunk){
+	public function onChunkLoaded(Chunk $chunk) : void{
 
 	}
 
-	public function onChunkPopulated(Chunk $chunk){
+	public function onChunkPopulated(Chunk $chunk) : void{
 
 	}
 
-	public function onChunkUnloaded(Chunk $chunk){
+	public function onChunkUnloaded(Chunk $chunk) : void{
 
 	}
 
-	public function onBlockChanged(Vector3 $block){
+	public function onBlockChanged(Vector3 $block) : void{
 
 	}
 }

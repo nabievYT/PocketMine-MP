@@ -59,7 +59,7 @@ abstract class LightUpdate{
 
 	abstract protected function getLight(int $x, int $y, int $z) : int;
 
-	abstract protected function setLight(int $x, int $y, int $z, int $level);
+	abstract protected function setLight(int $x, int $y, int $z, int $level) : void;
 
 	public function setAndUpdateLight(int $x, int $y, int $z, int $newLevel){
 		$this->updateNodes[Level::blockHash($x, $y, $z)] = [$x, $y, $z, $newLevel];

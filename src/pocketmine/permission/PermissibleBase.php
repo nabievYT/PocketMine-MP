@@ -65,7 +65,7 @@ class PermissibleBase implements Permissible{
 	/**
 	 * @param bool $value
 	 */
-	public function setOp(bool $value){
+	public function setOp(bool $value) : void{
 		$this->opable->setOp($value);
 	}
 
@@ -130,7 +130,7 @@ class PermissibleBase implements Permissible{
 	/**
 	 * @param PermissionAttachment $attachment
 	 */
-	public function removeAttachment(PermissionAttachment $attachment){
+	public function removeAttachment(PermissionAttachment $attachment) : void{
 		if(isset($this->attachments[spl_object_id($attachment)])){
 			unset($this->attachments[spl_object_id($attachment)]);
 			if(($ex = $attachment->getRemovalCallback()) !== null){
@@ -143,7 +143,7 @@ class PermissibleBase implements Permissible{
 
 	}
 
-	public function recalculatePermissions(){
+	public function recalculatePermissions() : void{
 		Timings::$permissibleCalculationTimer->startTiming();
 
 		$this->clearPermissions();

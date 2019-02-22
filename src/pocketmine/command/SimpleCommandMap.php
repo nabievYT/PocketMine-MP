@@ -138,7 +138,7 @@ class SimpleCommandMap implements CommandMap{
 	}
 
 
-	public function registerAll(string $fallbackPrefix, array $commands){
+	public function registerAll(string $fallbackPrefix, array $commands) : void{
 		foreach($commands as $command){
 			$this->register($fallbackPrefix, $command);
 		}
@@ -277,7 +277,7 @@ class SimpleCommandMap implements CommandMap{
 		return true;
 	}
 
-	public function clearCommands(){
+	public function clearCommands() : void{
 		foreach($this->knownCommands as $command){
 			$command->unregister($this);
 		}
@@ -285,7 +285,7 @@ class SimpleCommandMap implements CommandMap{
 		$this->setDefaultCommands();
 	}
 
-	public function getCommand(string $name){
+	public function getCommand(string $name) : ?Command{
 		return $this->knownCommands[$name] ?? null;
 	}
 

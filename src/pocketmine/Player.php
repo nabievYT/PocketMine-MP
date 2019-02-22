@@ -3289,7 +3289,7 @@ class Player extends Human implements CommandSender, ChunkLoader, ChunkListener,
 	 *
 	 * @return Inventory|null
 	 */
-	public function getWindow(int $windowId){
+	public function getWindow(int $windowId) : ?Inventory{
 		return $this->windowIndex[$windowId] ?? null;
 	}
 

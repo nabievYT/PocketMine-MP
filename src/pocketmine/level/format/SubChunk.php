@@ -43,7 +43,7 @@ class SubChunk implements SubChunkInterface{
 	protected $blockLight;
 	protected $skyLight;
 
-	private static function assignData(&$target, string $data, int $length, string $value = "\x00"){
+	private static function assignData(&$target, string $data, int $length, string $value = "\x00") : void{
 		if(strlen($data) !== $length){
 			assert($data === "", "Invalid non-zero length given, expected $length, got " . strlen($data));
 			$target = str_repeat($value, $length);

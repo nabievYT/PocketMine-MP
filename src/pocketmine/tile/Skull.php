@@ -53,7 +53,7 @@ class Skull extends Spawnable{
 		$nbt->setByte(self::TAG_ROT, $this->skullRotation);
 	}
 
-	public function setType(int $type){
+	public function setType(int $type) : void{
 		$this->skullType = $type;
 		$this->onChanged();
 	}

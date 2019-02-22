@@ -1626,7 +1626,7 @@ class Level implements ChunkManager, Metadatable{
 	 *
 	 * @return ItemEntity|null
 	 */
-	public function dropItem(Vector3 $source, Item $item, ?Vector3 $motion = null, int $delay = 10){
+	public function dropItem(Vector3 $source, Item $item, ?Vector3 $motion = null, int $delay = 10) : ?ItemEntity{
 		$motion = $motion ?? new Vector3(lcg_value() * 0.2 - 0.1, 0.2, lcg_value() * 0.2 - 0.1);
 		$itemTag = $item->nbtSerialize();
 		$itemTag->setName("Item");
@@ -1907,7 +1907,7 @@ class Level implements ChunkManager, Metadatable{
 	 *
 	 * @return Entity|null
 	 */
-	public function getEntity(int $entityId){
+	public function getEntity(int $entityId) : ?Entity{
 		return $this->entities[$entityId] ?? null;
 	}
 

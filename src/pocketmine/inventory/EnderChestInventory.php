@@ -54,7 +54,7 @@ class EnderChestInventory extends ChestInventory{
 	 *
 	 * @param EnderChest $enderChest
 	 */
-	public function setHolderPosition(EnderChest $enderChest){
+	public function setHolderPosition(EnderChest $enderChest) : void{
 		$this->holder->setComponents($enderChest->getFloorX(), $enderChest->getFloorY(), $enderChest->getFloorZ());
 		$this->holder->setLevel($enderChest->getLevel());
 	}

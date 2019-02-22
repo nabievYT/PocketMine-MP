@@ -165,7 +165,7 @@ class PermissibleBase implements Permissible{
 		Timings::$permissibleCalculationTimer->stopTiming();
 	}
 
-	public function clearPermissions(){
+	public function clearPermissions() : void{
 		$permManager = PermissionManager::getInstance();
 		$permManager->unsubscribeFromAllPermissions($this->parent ?? $this);
 
@@ -180,7 +180,7 @@ class PermissibleBase implements Permissible{
 	 * @param bool                      $invert
 	 * @param PermissionAttachment|null $attachment
 	 */
-	private function calculateChildPermissions(array $children, bool $invert, ?PermissionAttachment $attachment){
+	private function calculateChildPermissions(array $children, bool $invert, ?PermissionAttachment $attachment) : void{
 		$permManager = PermissionManager::getInstance();
 		foreach($children as $name => $v){
 			$perm = $permManager->getPermission($name);

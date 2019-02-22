@@ -110,7 +110,7 @@ class SimpleChunkManager implements ChunkManager{
 		$this->chunks[Level::chunkHash($chunkX, $chunkZ)] = $chunk;
 	}
 
-	public function cleanChunks(){
+	public function cleanChunks() : void{
 		$this->chunks = [];
 	}
 

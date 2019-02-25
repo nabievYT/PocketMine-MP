@@ -28,6 +28,8 @@ use pocketmine\block\utils\DyeColor;
 use pocketmine\block\utils\InvalidBlockStateException;
 use pocketmine\block\utils\PillarRotationTrait;
 use pocketmine\block\utils\TreeType;
+use pocketmine\item\Item;
+use pocketmine\item\ItemFactory;
 use pocketmine\item\ItemIds;
 use pocketmine\level\Position;
 use function array_fill;
@@ -239,6 +241,36 @@ class BlockFactory{
 		self::register(new StoneBricks(new BID(Block::STONEBRICK, StoneBricks::CRACKED), "Cracked Stone Bricks"));
 		self::register(new StoneBricks(new BID(Block::STONEBRICK, StoneBricks::MOSSY), "Mossy Stone Bricks"));
 		self::register(new StoneBricks(new BID(Block::STONEBRICK, StoneBricks::NORMAL), "Stone Bricks"));
+		self::register(new class(new BID(Block::MONSTER_EGG), "Stone Monster Egg") extends StoneMonsterEgg{
+			public function getSilkTouchDrops(Item $item) : array{
+				return [ItemFactory::get(ItemIds::STONE)];
+			}
+		});
+		self::register(new class(new BID(Block::MONSTER_EGG, 1), "Cobblestone Monster Egg") extends StoneMonsterEgg{
+			public function getSilkTouchDrops(Item $item) : array{
+				return [ItemFactory::get(ItemIds::COBBLESTONE)];
+			}
+		});
+		self::register(new class(new BID(Block::MONSTER_EGG, 2), "Stone Brick Monster Egg") extends StoneMonsterEgg{
+			public function getSilkTouchDrops(Item $item) : array{
+				return [ItemFactory::get(ItemIds::STONE_BRICK)];
+			}
+		});
+		self::register(new class(new BID(Block::MONSTER_EGG, 3), "Mossy Stone Brick Monster Egg") extends StoneMonsterEgg{
+			public function getSilkTouchDrops(Item $item) : array{
+				return [ItemFactory::get(ItemIds::STONE_BRICK, StoneBricks::MOSSY)];
+			}
+		});
+		self::register(new class(new BID(Block::MONSTER_EGG, 4), "Cracked Stone Brick Monster Egg") extends StoneMonsterEgg{
+			public function getSilkTouchDrops(Item $item) : array{
+				return [ItemFactory::get(ItemIds::STONE_BRICK, StoneBricks::CRACKED)];
+			}
+		});
+		self::register(new class(new BID(Block::MONSTER_EGG, 5), "Chiseled Stone Brick Monster Egg") extends StoneMonsterEgg{
+			public function getSilkTouchDrops(Item $item) : array{
+				return [ItemFactory::get(ItemIds::STONE_BRICK, StoneBricks::CHISELED)];
+			}
+		});
 		self::register(new StoneButton(new BID(Block::STONE_BUTTON), "Stone Button"));
 		self::register(new StonePressurePlate(new BID(Block::STONE_PRESSURE_PLATE), "Stone Pressure Plate"));
 		self::register(new StoneSlab(new BlockIdentifierFlattened(Block::STONE_SLAB, Block::DOUBLE_STONE_SLAB, 0), "Stone"));

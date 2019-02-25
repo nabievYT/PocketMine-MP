@@ -29,5 +29,9 @@ class Slime extends Transparent{
 		return 0;
 	}
 
+	public function getFrictionFactor() : float{
+		return 0.8;
+	}
+
 	//TODO
 }

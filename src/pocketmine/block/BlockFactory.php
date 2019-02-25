@@ -225,6 +225,7 @@ class BlockFactory{
 		self::register(new SeaLantern(new BID(Block::SEALANTERN), "Sea Lantern"));
 		self::register(new SignPost(new BID(Block::SIGN_POST, 0, ItemIds::SIGN, \pocketmine\tile\Sign::class), "Sign Post"));
 		self::register(new Skull(new BID(Block::MOB_HEAD_BLOCK, 0, null, \pocketmine\tile\Skull::class), "Mob Head"));
+		self::register(new Slime(new BID(Block::SLIME), "Slime Block"));
 		self::register(new SmoothStone(new BID(Block::STONE, Stone::NORMAL), "Stone"));
 		self::register(new Snow(new BID(Block::SNOW), "Snow Block"));
 		self::register(new SnowLayer(new BID(Block::SNOW_LAYER), "Snow Layer"));

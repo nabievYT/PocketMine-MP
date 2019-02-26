@@ -28,6 +28,7 @@ use pocketmine\block\utils\FallableTrait;
 use pocketmine\item\Item;
 use pocketmine\item\TieredTool;
 use pocketmine\level\Level;
+use pocketmine\level\particle\DragonEggTeleportParticle;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 use function max;
@@ -75,8 +76,8 @@ class DragonEgg extends Transparent implements Fallable{
 				$this->z + mt_rand(-16, 16)
 			);
 			if($block instanceof Air){
+				$this->level->addParticle($this, new DragonEggTeleportParticle($this->x - $block->x, $this->y - $block->y, $this->z - $block->z));
 				//TODO: add events
-				//TODO: particles
 				$this->level->setBlock($this, BlockFactory::get(Block::AIR));
 				$this->level->setBlock($block, $this);
 				break;
